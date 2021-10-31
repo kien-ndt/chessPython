@@ -16,9 +16,24 @@ class GUI:
     selected_piece_color = "#42C264"
     piece_legal_move = []
     selected_piece = None       # dạng kí tự string ô chọn h1, a1
-    focused = None
+    end_game = False
 
     def __init__(self, parent, chessboard):
+
+        self.parent = parent
+        self.menubar = tk.Menu(parent)
+        self.filemenu = tk.Menu(self.menubar, tearoff=0)
+        self.filemenu.add_command(label="New Game", command=self.new_game)
+        self.menubar.add_cascade(label="File", menu=self.filemenu)
+        self.parent.config(menu=self.menubar)
+
+        self.btmfrm = tk.Frame(parent, height=64)
+        self.info_label = tk.Label(self.btmfrm,
+                                   text="   Trắng bắt đầu game  ",
+                                   fg='red')
+        self.info_label.pack(side=tk.RIGHT, padx=8, pady=5)
+        self.btmfrm.pack(fill="x", side=tk.TOP)
+
         self.console_board = chessboard                         # chess ban đầu của thư viện
         self.set_chess_board(chessboard)                        # chuyển đổi sang mảng np
         canvas_width = (self.columns + 1) * self.dim_square
@@ -34,12 +49,23 @@ class GUI:
 
         self.canvas.bind("<Button-1>", self.square_clicked)
 
+    def new_game(self):
+        self.console_board = chess.Board()
+        self.selected_piece = None
+        self.piece_legal_move = []
+        self.set_chess_board(chess.Board())
+        self.draw_board()
+        self.draw_pieces(self.set_chess_board(chess.Board()))
+        self.change_info_label("   Trắng bắt đầu game  ")
+
     def set_chess_board(self, board_chess_lib):
         board = str(board_chess_lib).replace("\n", " ").split()
         board = np.array(board).reshape([8, 8])
         self.chessboard = board
+        return board
 
     def draw_board(self):
+        self.canvas.delete("area")
         color = self.color2
         for row in range(self.rows):
             color = self.color1 if color == self.color2 else self.color2
@@ -91,6 +117,10 @@ class GUI:
                     y0 = (y_canvas * self.dim_square) + int(self.dim_square / 2)
                     self.canvas.coords(occupied_name, x0, y0)
 
+    def change_info_label(self, text):
+        print(text)
+        self.info_label["text"] = str(text)
+
     def get_pieces_image(self, name):
         pieces_img_dir = "./pieces_image/"
         name = str(name)
@@ -110,9 +140,35 @@ class GUI:
                 return
             self.selected_piece = self.number_to_string_name_pos(selected_column, selected_row)
         else:
-            res_move = self.move(self.selected_piece, self.number_to_string_name_pos(selected_column, selected_row))
+            dest_piece =  str(self.number_to_string_name_pos(selected_column, selected_row))
+            res_move = self.move(self.selected_piece, dest_piece)
+            if res_move:
+                s = str(self.selected_piece + " -> " + dest_piece + ". ")
+                status, winner = self.is_end_game()
+                if status:
+                    if winner is not None:
+                        s1 = winner + " đã thắng"
+                    else:
+                        s1 = " Hai bên hòa"
+                else:
+                    if self.console_board.turn:
+                        s1 = "Tới lượt đen đi"
+                    else:
+                        s1 = "Tới lượt trắng đi"
+                self.change_info_label(s+s1)
             self.selected_piece = None
         self.draw_board()
+
+    def is_end_game(self):
+        status = False
+        winner = None
+        if self.console_board.outcome():
+            status = True
+            if self.console_board.outcome().winner == True:
+                winner = "Trắng"
+            if self.console_board.outcome().winner == False:
+                winner = "Đen"
+        return status, winner
 
     def number_to_string_name_pos(self, col, row):              # chuyển số hàng số cột sang dạng chữ + số a1 a2...
         s_row = str(8 - row)
