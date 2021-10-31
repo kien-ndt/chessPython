@@ -12,7 +12,10 @@ class GUI:
     images = {}
     color1 = "#DDB88C"
     color2 = "#A66D4F"
-    selected_piece = None
+    piece_legal_move_color = "#6EFA93"
+    selected_piece_color = "#42C264"
+    piece_legal_move = []
+    selected_piece = None       # dạng kí tự string ô chọn h1, a1
     focused = None
 
     def __init__(self, parent, chessboard):
@@ -42,24 +45,23 @@ class GUI:
             color = self.color1 if color == self.color2 else self.color2
             for col in range(self.columns):
                 x1 = (col * self.dim_square)
-                y1 = ((7 - row) * self.dim_square)
+                y1 = (row * self.dim_square)
                 x2 = x1 + self.dim_square
                 y2 = y1 + self.dim_square
-                if (self.focused is not None and (row, col) in self.focused):
+                if (col, row) in self.piece_legal_move:
                     self.canvas.create_rectangle(x1, y1, x2, y2,
-                                                 fill=self.highlightcolor,
+                                                 fill=self.piece_legal_move_color,
                                                  tags="area")
                 else:
-                    self.canvas.create_rectangle(x1, y1, x2, y2, fill=color,
-                                                 tags="area")
+                    if self.selected_piece is not None and (col, row) == self.string_name_to_number_pos(self.selected_piece):
+                        self.canvas.create_rectangle(x1, y1, x2, y2,
+                                                     fill=self.selected_piece_color,
+                                                     tags="area")
+                    else:
+                        self.canvas.create_rectangle(x1, y1, x2, y2, fill=color,
+                                                                     tags="area")
                 color = self.color1 if color == self.color2 else self.color2
-        # for name in self.pieces:
-        #     self.pieces[name] = (self.pieces[name][0], self.pieces[name][1])
-        #     x0 = (self.pieces[name][1] * self.dim_square) + int(
-        #         self.dim_square / 2)
-        #     y0 = ((7 - self.pieces[name][0]) * self.dim_square) + int(
-        #         self.dim_square / 2)
-        #     self.canvas.coords(name, x0, y0)
+
         for row in range(self.rows):
             x = ((self.columns + 1) * self.dim_square) - int(self.dim_square / 2)
             y = (row * self.dim_square) + int(self.dim_square / 2)
@@ -70,12 +72,12 @@ class GUI:
             self.canvas.create_text(x, y, text=str(chr(ord('a') + column)), anchor=tk.CENTER)
         self.canvas.tag_raise("occupied")
         self.canvas.tag_lower("area")
+        self.piece_legal_move = []
 
     def draw_pieces(self, chessboard): # chessboard: np array
         self.canvas.delete("occupied")
         self.images = {}
         for i, row in enumerate(chessboard):
-            print(row)
             for j, element in enumerate(row):
                 if element and str(element).isalpha():
                     occupied_name = str(element) + str(i) + str(j)
@@ -85,7 +87,6 @@ class GUI:
                                              anchor="c")
                     x_canvas = j
                     y_canvas = i
-
                     x0 = (x_canvas * self.dim_square) + int(self.dim_square / 2)
                     y0 = (y_canvas * self.dim_square) + int(self.dim_square / 2)
                     self.canvas.coords(occupied_name, x0, y0)
@@ -104,10 +105,14 @@ class GUI:
         selected_column = int(event.x / col_size)
         selected_row = int(event.y / row_size)
         if self.selected_piece is None:
+            self.get_piece_legal_moves(selected_column, selected_row)
+            if len(self.piece_legal_move) == 0:
+                return
             self.selected_piece = self.number_to_string_name_pos(selected_column, selected_row)
         else:
-            self.move(self.selected_piece, self.number_to_string_name_pos(selected_column, selected_row))
+            res_move = self.move(self.selected_piece, self.number_to_string_name_pos(selected_column, selected_row))
             self.selected_piece = None
+        self.draw_board()
 
     def number_to_string_name_pos(self, col, row):              # chuyển số hàng số cột sang dạng chữ + số a1 a2...
         s_row = str(8 - row)
@@ -115,11 +120,30 @@ class GUI:
         s = s_col + s_row
         return s
 
-    def move(self, from_square, to_square):                     # di chuyển quân cờ (ví dụ h1 h2)
-        print(self.console_board.legal_moves)
-        self.console_board.push_san(from_square+to_square)
+    def string_name_to_number_pos(self, string_pos):
+        s_col = string_pos[0]
+        s_row = string_pos[1]
+        col = ord(s_col) - ord('a')
+        row = 8 - int(s_row)
+        return col, row
+
+    def move(self, from_square, to_square):                 # di chuyển quân cờ (ví dụ h1 h2)
+        try:
+            self.console_board.push_san(from_square + to_square)
+        except:
+            return False
         self.set_chess_board(self.console_board)
         self.draw_pieces(self.chessboard)
+        return True
+
+    def get_piece_legal_moves(self, col, row):
+        pos = self.number_to_string_name_pos(col, row)
+        list_legal_moves = list(self.console_board.legal_moves)
+        piece_legal_moves = []
+        for legal_move in list_legal_moves:
+            if str(legal_move)[0:2] == pos:
+                piece_legal_moves.append(self.string_name_to_number_pos(str(legal_move)[2:4]))
+        self.piece_legal_move = piece_legal_moves
 
 def main():
     root = tk.Tk()
