@@ -25,7 +25,7 @@ def get_next_move_minimax(board):
 def minimax(board, depth, alpha, beta, maximizing_player):
     global number_nodes
     if depth == 0 or not board.legal_moves:
-        return evaluate(board)
+        return evaluate(board, global_turn)
 
     list_legal_moves = list(board.legal_moves)
     if maximizing_player:
@@ -59,6 +59,6 @@ def minimax(board, depth, alpha, beta, maximizing_player):
                 break
         return min_val
 
-def evaluate(board):
-    return eval_board.evaluate_board(board)
+def evaluate(board, global_turn):
+    return eval_board.evaluate_board(board, global_turn)
 

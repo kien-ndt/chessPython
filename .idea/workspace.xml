@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a883dc4f-c371-4a67-ac47-34c0517967bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AIChess.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GamePlay.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PositionScore.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonChess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonChess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIChess.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIChess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

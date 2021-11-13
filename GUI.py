@@ -19,7 +19,7 @@ class GUI:
     selected_piece = None       # dạng kí tự string ô chọn h1, a1
     end_game = False
 
-    AI = [True, True]           # AI[1] = True => white, else black
+    AI = [True, False]           # AI[1] = True => white, else black
 
     def __init__(self, parent, chessboard):
 
@@ -27,7 +27,7 @@ class GUI:
         self.menubar = tk.Menu(parent)
         self.filemenu = tk.Menu(self.menubar, tearoff=0)
         self.filemenu.add_command(label="New Game", command=self.new_game)
-        self.menubar.add_cascade(label="File", menu=self.filemenu)
+        self.menubar.add_cascade(label="Option", menu=self.filemenu)
         self.parent.config(menu=self.menubar)
 
         self.btmfrm = tk.Frame(parent, height=64)
