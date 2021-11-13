@@ -1,6 +1,7 @@
 import tkinter as tk
 import chess
 import numpy as np
+import AIChess
 
 console_board = chess.Board()
 # canvas góc phần tư 4 oxy
@@ -17,6 +18,8 @@ class GUI:
     piece_legal_move = []
     selected_piece = None       # dạng kí tự string ô chọn h1, a1
     end_game = False
+
+    AI = [True, True]           # AI[1] = True => white, else black
 
     def __init__(self, parent, chessboard):
 
@@ -75,17 +78,12 @@ class GUI:
                 x2 = x1 + self.dim_square
                 y2 = y1 + self.dim_square
                 if (col, row) in self.piece_legal_move:
-                    self.canvas.create_rectangle(x1, y1, x2, y2,
-                                                 fill=self.piece_legal_move_color,
-                                                 tags="area")
+                    self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.piece_legal_move_color, tags="area")
                 else:
                     if self.selected_piece is not None and (col, row) == self.string_name_to_number_pos(self.selected_piece):
-                        self.canvas.create_rectangle(x1, y1, x2, y2,
-                                                     fill=self.selected_piece_color,
-                                                     tags="area")
+                        self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.selected_piece_color, tags="area")
                     else:
-                        self.canvas.create_rectangle(x1, y1, x2, y2, fill=color,
-                                                                     tags="area")
+                        self.canvas.create_rectangle(x1, y1, x2, y2, fill=color, tags="area")
                 color = self.color1 if color == self.color2 else self.color2
 
         for row in range(self.rows):
@@ -117,8 +115,17 @@ class GUI:
                     y0 = (y_canvas * self.dim_square) + int(self.dim_square / 2)
                     self.canvas.coords(occupied_name, x0, y0)
 
+        self.parent.update_idletasks()
+        self.new_play_turn()
+
+    def new_play_turn(self):
+        if self.AI[0]:
+            if self.console_board.turn == self.AI[1]:
+                next_move = AIChess.get_next_move_minimax(self.console_board)
+                self.move(str(next_move)[0:2], str(next_move)[2:])
+                self.draw_pieces(self.chessboard)
+
     def change_info_label(self, text):
-        print(text)
         self.info_label["text"] = str(text)
 
     def get_pieces_image(self, name):
@@ -140,7 +147,7 @@ class GUI:
                 return
             self.selected_piece = self.number_to_string_name_pos(selected_column, selected_row)
         else:
-            dest_piece =  str(self.number_to_string_name_pos(selected_column, selected_row))
+            dest_piece = str(self.number_to_string_name_pos(selected_column, selected_row))
             res_move = self.move(self.selected_piece, dest_piece)
             if res_move:
                 s = str(self.selected_piece + " -> " + dest_piece + ". ")
@@ -157,7 +164,9 @@ class GUI:
                         s1 = "Tới lượt trắng đi"
                 self.change_info_label(s+s1)
             self.selected_piece = None
+
         self.draw_board()
+        self.draw_pieces(self.chessboard)
 
     def is_end_game(self):
         status = False
@@ -187,9 +196,11 @@ class GUI:
         try:
             self.console_board.push_san(from_square + to_square)
         except:
-            return False
+            try:
+                self.console_board.push_san(from_square + to_square + 'q') #phong hậu có thêm chữ q
+            except:
+                return False
         self.set_chess_board(self.console_board)
-        self.draw_pieces(self.chessboard)
         return True
 
     def get_piece_legal_moves(self, col, row):
@@ -201,12 +212,3 @@ class GUI:
                 piece_legal_moves.append(self.string_name_to_number_pos(str(legal_move)[2:4]))
         self.piece_legal_move = piece_legal_moves
 
-def main():
-    root = tk.Tk()
-    root.title("Chess")
-    gui = GUI(root, console_board)
-    root.mainloop()
-
-
-if __name__ == "__main__":
-    main()
