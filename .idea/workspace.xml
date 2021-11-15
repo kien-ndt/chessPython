@@ -2,10 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a883dc4f-c371-4a67-ac47-34c0517967bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/chessPython/AIChess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/GUI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/GamePlay.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/PositionScore.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/board.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/chess_best_model.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/chess_best_model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/evaluate_deeplearning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chessPython/table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess_best_model.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess_best_model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluate_deeplearning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PythonChess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonChess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIChess.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIChess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +54,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -206,6 +225,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
