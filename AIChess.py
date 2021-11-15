@@ -2,12 +2,13 @@ import copy
 
 import chess
 import PositionScore as pos_score
+import time
 # import board as eval_board
 from evaluate_deeplearning import Evaluate
 class AIChess:
 
     INFINITY = 9999999
-    global_depth = 2
+    global_depth = 4
     global_next_move = None
     global_turn = 'w'           # quan tinh loi the
     number_nodes = 0
@@ -16,6 +17,8 @@ class AIChess:
         self.eval = Evaluate()
 
     def get_next_move_minimax(self, board):
+        start_time = time.time()
+        print("Calculating...............")
         global global_turn
         global number_nodes
         number_nodes = 0
@@ -23,8 +26,9 @@ class AIChess:
             global_turn = 'w'
         else:
             global_turn = 'b'
+        # return self.eval.calculate_move(8, board.copy(), 50)
         self.minimax(board, self.global_depth, -self.INFINITY, self.INFINITY, True)
-        print(number_nodes)
+        print(number_nodes, time.time()-start_time)
         return global_next_move
 
 
@@ -67,7 +71,7 @@ class AIChess:
 
     def evaluate(self, board, global_turn):
         score = self.eval.evaluate_board(board)
-        print(score)
+        # print(score)
         if global_turn == 'w':
         # return eval_board.evaluate_board(board, global_turn)
             return score
