@@ -2,51 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a883dc4f-c371-4a67-ac47-34c0517967bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/chess_best_model.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chess_best_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/evaluate_deeplearning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/Activate.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/activate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/activate.csh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/activate.fish" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/estimator_ckpt_converter" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/f2py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/f2py3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/f2py3.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/google-oauthlib-tool" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/import_pb_to_tensorboard" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/markdown_py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/normalizer" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pip3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pip3.10" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pip3.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-decrypt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-encrypt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-keygen" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-priv2pub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-sign" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/pyrsa-verify" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/python" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/python3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/python3.8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/saved_model_cli" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/tensorboard" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/tf_upgrade_v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/tflite_convert" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/toco" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/toco_from_protos" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/bin/wheel" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/lib64" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv3.8/pyvenv.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonChess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonChess.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIChess.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIChess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/board.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,19 +31,15 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="20ENyPeEHX0AfpW6q5yHf2uh2zo" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -156,7 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="evaluate_deeplearning" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PythonChess" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,7 +123,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/evaluate_deeplearning.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -223,9 +178,9 @@
       <list>
         <item itemvalue="Python.GamePlay" />
         <item itemvalue="Python.GUI" />
-        <item itemvalue="Python.evaluate_deeplearning" />
         <item itemvalue="Python.AIChess" />
         <item itemvalue="Python.gui" />
+        <item itemvalue="Python.app" />
       </list>
     </recent_temporary>
   </component>
@@ -251,9 +206,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

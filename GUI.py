@@ -19,8 +19,7 @@ class GUI:
     selected_piece = None       # dạng kí tự string ô chọn h1, a1
     end_game = False
 
-    AI = [True, True]           # AI[1] = True => white, else black
-    ai_cal = AIChess.AIChess()
+    AI = [True, False]           # AI[1] = True => white, else black
 
     def __init__(self, parent, chessboard):
 
@@ -44,7 +43,6 @@ class GUI:
         canvas_height = (self.rows + 1) * self.dim_square
         self.canvas = tk.Canvas(parent, width=canvas_width, height=canvas_height)
         self.canvas.pack(padx=8, pady=8)
-        self.parent.update_idletasks()
         self.draw_board()
         self.draw_pieces(self.chessboard)
 
@@ -53,7 +51,6 @@ class GUI:
         self.canvas.tag_raise("occupied")
 
         self.canvas.bind("<Button-1>", self.square_clicked)
-
 
     def new_game(self):
         self.console_board = chess.Board()
@@ -100,7 +97,6 @@ class GUI:
         self.canvas.tag_raise("occupied")
         self.canvas.tag_lower("area")
         self.piece_legal_move = []
-        self.parent.update_idletasks()
 
     def draw_pieces(self, chessboard): # chessboard: np array
         self.canvas.delete("occupied")
@@ -125,7 +121,7 @@ class GUI:
     def new_play_turn(self):
         if self.AI[0]:
             if self.console_board.turn == self.AI[1]:
-                next_move = self.ai_cal.get_next_move_minimax(self.console_board)
+                next_move = AIChess.get_next_move_minimax(self.console_board)
                 self.move(str(next_move)[0:2], str(next_move)[2:])
                 self.draw_pieces(self.chessboard)
 
