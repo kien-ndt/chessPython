@@ -1,5 +1,4 @@
 import chess
-import pygame
 
 board = chess.Board()
 # board.turn: true => white, false => black
