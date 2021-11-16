@@ -24,8 +24,8 @@ class Evaluate:
         'K' : [0,0,0,0,0,0,0,0,0,0,0,1],
         '.' : [0,0,0,0,0,0,0,0,0,0,0,0],
     }
-    maximum = 9000.0
-    minimum = -6818.0
+    maximum = 42000.0
+    minimum = -54000.0
     def __init__(self):
         self.model = self.load_keras_model('mse', 'Adam')
         # self.model = self.load_keras_model('binary_crossentropy', 'Adam')
@@ -97,17 +97,17 @@ class Evaluate:
                 else:
                     piece_score = 1
                 if piece_symbol.lower() == 'p':
-                    piece_score *= 100*1.2
+                    piece_score *= 100*5
                 elif piece_symbol.lower() == 'n':
-                    piece_score *= 300*1.2
+                    piece_score *= 300*5
                 elif piece_symbol.lower() == 'b':
-                    piece_score *= 300*1.2
+                    piece_score *= 300*5
                 elif piece_symbol.lower() == 'r':
-                    piece_score *= 500*1.2
+                    piece_score *= 500*5
                 elif piece_symbol.lower() == 'q':
-                    piece_score *= 900*1.2
+                    piece_score *= 900*5
                 elif piece_symbol.lower() == 'k':
-                    piece_score *= 10000*1.2
+                    piece_score *= 10000*5
 
                 value_pieces_score += piece_score
 
