@@ -8,6 +8,7 @@ import time
 #https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.7.0-cp38-cp38-manylinux2010_x86_64.whl
 from keras.models import Sequential, load_model, model_from_json
 
+from LiteModel import LiteModel as lm
 class Evaluate:
     chess_dict = {
         'p' : [1,0,0,0,0,0,0,0,0,0,0,0],
@@ -31,17 +32,16 @@ class Evaluate:
         # self.model = self.load_keras_model('binary_crossentropy', 'Adam')
 
     
-    def evaluate_board(self, board):
+    def evaluate_board(self, board, get_sum_eval_time):
         board = board.copy()
         matrix = self.make_matrix(board.copy())
         translated = np.array(self.translate(matrix,self.chess_dict))
-        # start = time.time()
+        start = time.time()
 
-        # score = self.model.predict(translated.reshape(1,8,8,12))
-
-        score = self.model(translated.reshape(1,8,8,12))
+        score = self.model.predict(translated.reshape(1,8,8,12))
+        # score = self.model(translated.reshape(1,8,8,12))
         score = np.array(score)
-        # print(time.time() - start)
+        get_sum_eval_time(time.time() - start)
 
         value_pieces_score = self.all_piece_values(board)
 
@@ -57,6 +57,7 @@ class Evaluate:
         model = model_from_json(loaded_model_json)
         model.compile(optimizer=optimizer, loss=loss, metrics = None)
         model.load_weights('./chess_best_model.h5')
+        model = lm.from_keras_model(model)
         return model
 
     def make_matrix(self,board):

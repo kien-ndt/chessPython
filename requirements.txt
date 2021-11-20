@@ -1,2 +1,5 @@
 chess==1.7.0
+python-chess==1.999
 numpy==1.21.4
+tensorflow==2.7.0 #https://www.tensorflow.org/install/pip#virtual-environment-install
+keras==2.7.0

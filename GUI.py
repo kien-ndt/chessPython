@@ -125,9 +125,17 @@ class GUI:
     def new_play_turn(self):
         if self.AI[0]:
             if self.console_board.turn == self.AI[1]:
-                next_move = self.ai_cal.get_next_move_minimax(self.console_board)
-                self.move(str(next_move)[0:2], str(next_move)[2:])
-                self.draw_pieces(self.chessboard)
+                status, winner = self.is_end_game()
+                if not status:
+                    next_move = self.ai_cal.get_next_move_minimax(self.console_board)
+                    self.move(str(next_move)[0:2], str(next_move)[2:])
+                    self.draw_pieces(self.chessboard)
+                    s = str(str(next_move)[0:2] + " -> " + str(next_move)[2:] + ". ")
+                    if self.console_board.turn:
+                        s1 = "Tới lượt trắng đi"
+                    else:
+                        s1 = "Tới lượt đen đi"
+                    self.change_info_label(s+s1)
 
     def change_info_label(self, text):
         self.info_label["text"] = str(text)
@@ -163,9 +171,9 @@ class GUI:
                         s1 = " Hai bên hòa"
                 else:
                     if self.console_board.turn:
-                        s1 = "Tới lượt đen đi"
-                    else:
                         s1 = "Tới lượt trắng đi"
+                    else:
+                        s1 = "Tới lượt đen đi"
                 self.change_info_label(s+s1)
             self.selected_piece = None
 
