@@ -14,6 +14,7 @@ class AIChess:
     number_nodes = 0
     global_eval_time = 0
     global_eval_count = 0
+    global_start_time = 0
 
     def __init__(self):
         self.eval = Evaluate()
@@ -31,13 +32,28 @@ class AIChess:
         self.global_eval_time=0
         self.global_eval_count=0
         self.sum_time=0
+        self.global_start_time=time.time()
         self.minimax(board, self.global_depth, -self.INFINITY, self.INFINITY, True)
         print(self.number_nodes, time.time()-start_time, self.global_eval_time, self.global_eval_count, self.sum_time)
         return global_next_move
 
 
     def minimax(self, board, depth, alpha, beta, maximizing_player):
-        if depth == 0 or not board.legal_moves:
+        if depth == 0 or not board.legal_moves or (depth<=1 and time.time() - self.global_start_time > 30):
+            if not board.legal_moves:
+                if board.outcome():
+                    winner = board.outcome().winner
+                    if winner == True:
+                        if self.global_turn == 'w':
+                            return self.INFINITY
+                        else:
+                            return -self.INFINITY
+                    else:
+                        if self.global_turn == 'w':
+                            return -self.INFINITY
+                        else:
+                            return self.INFINITY
+                            
             start1 = time.time()
             k = self.evaluate(board, global_turn)
             self.global_eval_count+=1
