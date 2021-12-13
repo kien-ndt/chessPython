@@ -19,7 +19,7 @@ class GUI:
     selected_piece = None       # dạng kí tự string ô chọn h1, a1
     end_game = False
 
-    AI = [True, True]           # AI[1] = True => white, else black
+    AI = [True, False]           # AI[1] = True => white, else black
     ai_cal = AIChess.AIChess()
 
     def __init__(self, parent, chessboard):
@@ -136,6 +136,9 @@ class GUI:
                     else:
                         s1 = "Tới lượt đen đi"
                     self.change_info_label(s+s1)
+                else:
+                    self.new_game()
+
 
     def change_info_label(self, text):
         self.info_label["text"] = str(text)

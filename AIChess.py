@@ -23,6 +23,8 @@ class AIChess:
         start_time = time.time()
         print("Calculating...............")
         global global_turn
+        global global_next_move 
+        global_next_move= None
         self.number_nodes = 0
         if board.turn:
             global_turn = 'w'
@@ -69,7 +71,7 @@ class AIChess:
                 val = self.minimax(board, depth - 1, alpha, beta, False)
 
                 if depth == self.global_depth:
-                    if val > max_val:
+                    if val >= max_val:
                         global global_next_move
                         global_next_move = str(move)
 
